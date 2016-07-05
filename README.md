@@ -4,6 +4,7 @@
 * Redis设计与实现 - 电子书
 * Redis入门 - 视频
 * NoSQL集合 - 视频
+* 学术资料
 
 ### 相关资料
 官网:http://redis.io/
