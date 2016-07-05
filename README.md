@@ -28,7 +28,6 @@ brew cask install rdm # 安装图形化界面客户端
 
 ### 故事
 Salvatore Sanfilippo (antirez)在2009年2月26日为了解决网站LLOOGG.com的负载问题发明了Redis.
-
 LLOOGG.com网站目前已经关闭,但是源码已经开放在Github上:https://github.com/antirez/lloogg
 
 
