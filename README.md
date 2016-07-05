@@ -25,3 +25,10 @@ brew cask install rdm # 安装图形化界面客户端
 2. 学会使用Redis来构建实际的应用程序
 3. 学会使用Redis自带的工具以及第三方工具,来维护和管理Redis
 4. 了解Redis的实现原理,以便更好,更高效的使用Redis
+
+### 故事
+Salvatore Sanfilippo (antirez)在2009年2月26日为了解决网站LLOOGG.com的负载问题发明了Redis.
+
+LLOOGG.com网站目前已经关闭,但是源码已经开放在Github上:https://github.com/antirez/lloogg
+
+
