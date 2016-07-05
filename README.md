@@ -7,8 +7,9 @@
 * 学术资料
 
 ### 相关资料
-官网:http://redis.io/
-资料:http://huangz.me/
+* 官网:http://redis.io/
+* 资料:http://huangz.me/
+* 作者:http://invece.org/
 ## 安装
 ### 在OSX上安装Redis
 直接使用brew命令安装
