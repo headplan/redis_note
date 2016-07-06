@@ -63,5 +63,18 @@ def index():
   if cached_content:
     return cached_content
   else:
-    # 
+    # 页面没有被缓存,访问数据库并重新生成页面
+    content = fetch_and_create_index()
+    # 缓存页面,方便下次去除
+    cache.put('index',content)
+    # 返回页面
+    return content
+```
+** 缓存程序的API及其实现 **
+
+| API | 效果 | 实现 |
+| -- | -- | -- |
+| Cache(client) | 设置缓存程序使用的客户端 |  |
+| 0:3 | 1:3 | 2:3 |
+| 0:4 | 1:4 | 2:4 |
 
