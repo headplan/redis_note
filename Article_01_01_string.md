@@ -75,6 +75,19 @@ def index():
 | API | 效果 | 实现 |
 | -- | -- | -- |
 | Cache(client) | 设置缓存程序使用的客户端 |  |
-| 0:3 | 1:3 | 2:3 |
-| 0:4 | 1:4 | 2:4 |
+| Cache.put(name,content) | 把指定的内容放到缓存里面,并使用name来命名它,以便之后取出 | 调用SET命令 |
+| Cache.get(name) | 从缓存中取出以name命名的内容 | 调用GET命令 |
 
+** 缓存程序的具体实现 **
+```
+# coding:utf-8
+class Cache:
+  def __int__(self, client):
+    self.client = client
+  def put(self, name, content):
+    self.client.set(name, content)
+  def get(self, name):
+    return self.client.get(name)
+```
+
+### 仅在键不存在的情况下进行设置
