@@ -19,3 +19,35 @@ SET key value
 ```
 SET key value [NX|XX]
 ```
+SET命令还支持可选项NX和XX:
+* 给定NX选项,那么命令仅在键key不存在的情况下,才进行设置操作,如果key已经存在,则不做操作(即不会覆盖旧值).
+* 给定XX选项,那么命令仅在键key存在的情况下,才进行设置操作,也就是说一定会覆盖旧的,如果没有旧的就不操作.
+
+注:在NX和XX选项给定的情况下,SET命令设置成功返回OK,失败返回nil.
+```
+SET nx-str "如果没有这个键" XX # 如果没有这个键设置失败
+nil
+SET nx-str "如果没有这个键" NX # 如果没有这个键则创建成功
+OK
+SET nx-str "如果这个键已经存在" NX # 如果这个键已经存在则创建失败
+nil
+SET nx-str "如果这个键已经存在" XX # 如果这个键已经存在则替换原来的value
+OK
+```
+### 获取字符串的值
+```
+GET key
+```
+* 返回字符串键key存储的值
+* 复杂度为O(1)
+  ```
+  SET msg "hello world"
+  OK
+  GET msg
+  hello world
+  SET number 10086
+  OK
+  GET number
+  10086
+  ```
+
