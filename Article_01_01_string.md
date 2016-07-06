@@ -50,4 +50,18 @@ GET key
   GET number
   10086
   ```
+### 使用Redis来进行缓存
+可以使用Redis来缓存一些经常会被用到,或者需要消耗大量资源的内容.将这些内容放到Redis里(也就是内存里),程序可以快速的取得这些内容.
+
+举个例子,对于一个网站,某个页面经常被访问到,或者创建页面时耗费的资源比较多,比如多次访问数据库,生成时间比较长等等.可以使用Redis将这个页面缓存起来,减轻网站的负担,降低网站的延迟值.
+```
+@app.route("/")
+def index():
+  # 尝试从缓存里面获取被缓存的页面
+  cached_content = cache.get('index')
+  # 判断缓存存在,直接返回页面
+  if cached_content:
+    return cached_content
+  else:
+    # 
 
