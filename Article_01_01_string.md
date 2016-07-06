@@ -89,5 +89,7 @@ class Cache:
   def get(self, name):
     return self.client.get(name)
 ```
-
 ### 仅在键不存在的情况下进行设置
+```
+SETNX key value
+```
