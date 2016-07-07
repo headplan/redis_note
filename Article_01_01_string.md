@@ -230,3 +230,11 @@ GETRANGE key start end
 * 返回键key存储的字符串值中start和end两个索引之间的内容(包含start和end)
 * GETRANGE的索引可以是正数或负数
 * 复杂度为O(N),N为被选中内容的长度
+```
+SET msg "hello world"
+OK
+GETRANGE msg 0 4
+"hello"
+GETRANGE msg -5 -1
+"world"
+```
