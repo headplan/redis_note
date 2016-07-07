@@ -149,3 +149,7 @@ MSETNX nx-4 "apple" nx-5 "banana" ex-key "cherry" nx-6 "durian"
 ```
 
 ### 设置新值并返回旧值
+```
+GETSET key new-value
+```
+将字符串键的值设置为new-value,并返回字符串键在设置新值
