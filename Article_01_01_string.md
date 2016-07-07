@@ -175,4 +175,4 @@ def GETSET(key, new-value)
 APPEND key value
 ```
 * 将值value推入到字符串键key已存储内容的末尾
-* 
+* O(N)复杂度,其中N为被推入值的长度
