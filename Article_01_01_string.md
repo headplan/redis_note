@@ -238,3 +238,5 @@ GETRANGE msg 0 4
 GETRANGE msg -5 -1
 "world"
 ```
+![范围取值](Snip20160707_3.png)
+## 数字操作
