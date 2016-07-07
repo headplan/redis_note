@@ -141,5 +141,11 @@ MSETNX key value [key value...]
 ```
 MSETNX nx-1 "hello" nx-2 "world" nx-3 "good luck"
 1
-
+SET ex-key "bad key here"
+OK
+MSETNX nx-4 "apple" nx-5 "banana" ex-key "cherry" nx-6 "durian"
+0
+因为ex-key键已经存在,所以返回0,执行失败
 ```
+
+### 设置新值并返回旧值
