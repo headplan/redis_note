@@ -93,3 +93,41 @@ class Cache:
 ```
 SETNX key value
 ```
+仅在键key不存在的情况下,将键key的值设置为value,效果和SET key value NX一样.NX的意思就是"Not eXists(不存在)".
+* 键不存在并且设置成功时,命令返回1
+* 键已经存在而导致设置失败时,命令返回0
+* 复杂度为O(1)
+```
+SETNX new-key "new key"
+1
+SETNX new-key "new new key"
+0 # 键已存在设置失败返回0
+GET new-key
+new key
+```
+### 同时设置或获取多个字符串键的值
+* MSET key value [key value...]
+* 一次为一个或多个字符串键设置值,效果和同时执行多个SET命令一样,命令返回OK
+* O(N)复杂度,N为字符串键的数量
+
+* MGET key [key...]
+* 一次返回一个或多个字符串键的值,效果和同时执行多个GET命令一样
+* O(N)复杂度,N为要获取的字符串键的数量
+
+** 设置或获取个人信息 **
+
+通过MSET和MGET一次性设置和获取用户名,电子邮件,个人网站等信息.
+```
+MSET test::email "test@qq.com" test::homepage "http://test.com"
+MGET test::email test::homepage
+```
+
+### 键的命名
+因为Redis的数据库不能出现两个同名的键,所有通常会使用field1::,field2::这样的格式来区分同一类型的字符串键.::是分隔符,当然也可以根据个人喜好设置分隔符,比如test/email,test|email等等.
+```
+一些复杂的分隔符:
+user::10086::info - ID为10086的用户的信息
+news::sport::cache - 新闻网站体育分类的缓存
+message::123321::content - ID为123321的消息的内容
+```
+
