@@ -152,4 +152,27 @@ MSETNX nx-4 "apple" nx-5 "banana" ex-key "cherry" nx-6 "durian"
 ```
 GETSET key new-value
 ```
-将字符串键的值设置为new-value,并返回字符串键在设置新值
+* 将字符串键的值设置为new-value,并返回字符串键在设置新值之前存储的就的值(old value).
+* 复杂度为O(1)
+```
+SET getset-str "imoldvalue"
+OK
+GETSET getset-str "imnewvalue"
+imoldvalue
+GET getset-str
+imnewvalue
+```
+** 用伪代码表示GETSET的定义 **
+```
+def GETSET(key, new-value)
+  old-value = GET(key) # 记录旧值
+  SET(key, new-value) # 设置新值
+  return old-value # 返回旧值
+```
+
+### 追加内容到字符串末尾
+```
+APPEND key value
+```
+* 将值value推入到字符串键key已存储内容的末尾
+* 
