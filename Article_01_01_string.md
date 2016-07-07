@@ -221,5 +221,12 @@ SETRANGE msg 1 "appy"
 5
 GET msg
 "happy"
-
+```
+![范围设置](Snip20160707_2.png)
 ### 范围取值
+```
+GETRANGE key start end
+```
+* 返回键key存储的字符串值中start和end两个索引之间的内容(包含start和end)
+* GETRANGE的索引可以是正数或负数
+* 复杂度为O(N),N为被选中内容的长度
