@@ -209,7 +209,17 @@ STRLEN msg
 除了正数索引之外,字符串还有负数索引,以-1为开始,从字符串的结尾向字符串的开头依次递减,最后一个字符的索引为-N,其中N为字符串的长度.
 ![正负索引](Snip20160707_1.png)
 ### 范围设置
-
-
+```
+SETRANGE key index value
+```
+* 从索引index开始,用value覆写(overwrite)给定键key所存储的字符串值(只接受正数索引)
+* 命令返回覆写之后字符串值的长度,复杂度为O(N),N为value的总长度
+```
+SET msg "hello"
+OK
+SETRANGE msg 1 "appy"
+5
+GET msg
+"happy"
 
 ### 范围取值
