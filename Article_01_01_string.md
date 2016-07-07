@@ -131,3 +131,15 @@ news::sport::cache - 新闻网站体育分类的缓存
 message::123321::content - ID为123321的消息的内容
 ```
 
+### 一次设置多个不存在的键
+```
+MSETNX key value [key value...]
+```
+* 只有在所有给定键都不存在的情况下,MSETNX会为所有给定键设置值,效果和同时执行多个SETNX一样.如果给定的键至少有一个是存在的,那么将设置失败.
+* 返回1表示设置成功,返回0表示设置失败.
+* 复杂度为O(N),N为给定的键数量.
+```
+MSETNX nx-1 "hello" nx-2 "world" nx-3 "good luck"
+1
+
+```
