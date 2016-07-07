@@ -174,5 +174,30 @@ def GETSET(key, new-value)
 ```
 APPEND key value
 ```
-* 将值value推入到字符串键key已存储内容的末尾
+* 将值value推入到字符串键key已存储内容的末尾,返回值的长度
 * O(N)复杂度,其中N为被推入值的长度
+* 向一个不存在的键key末尾追加会新创建一个key-value
+```
+SET myPhone "nokia"
+OK
+APPEND myPhone "-1110"
+10
+GET myPhone
+"nokia-1110"
+```
+### 返回值的长度
+```
+STRLEN key
+```
+* 返回字符串键key存储的值的长度
+* 因为Redis会记录每个字符串值的长度,所以获取该值的长度的复杂度为O(1)
+```
+SET msg "hello"
+OK
+STRLEN msg
+5
+APPEND msg " world"
+11
+STRLEN msg
+11
+```
