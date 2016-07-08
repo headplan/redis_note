@@ -253,4 +253,13 @@ GETRANGE msg -5 -1
 ```
 ### 增加或者减少数字的值
 ```
-INCRBY key increment - 
+INCRBY key increment
+```
+* 将key所存储的值加上增量increment,返回操作执行之后键key的当前值.
+* 复杂度为O(1)
+```
+DECRBY key decrement
+```
+* 将key所存储的值减去减量decrement,返回操作执行之后键key的当前值.
+* 复杂度为O(1)
+如果执行上面的命令时,key不存在,那么会将key初始化0,然后再执行增加或者减少操作.
