@@ -252,3 +252,5 @@ GETRANGE msg -5 -1
 1321ASSF - 不可以,有文字,当然纯文字也不可以
 ```
 ### 增加或者减少数字的值
+```
+INCRBY key increment - 
