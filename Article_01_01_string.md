@@ -313,5 +313,18 @@ class Counter:
     return int(counter)
     
   def decr(self, n=1):
-    counter = self.client.decr(self.key, )
+    counter = self.client.decr(self.key, n)
+    return int(counter)
+  
+  def reset(self, n=0):
+    counter = self.client.getset(self.key, n)
+    if counter is None:
+      counter = 0
+    return int(counter)
+    
+  def get(self):
+    counter = self.client.get(self.key)
+    if counter is None:
 ```
+### id生成器
+很多网站在创建新条目的时候,
