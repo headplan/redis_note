@@ -301,5 +301,17 @@ DECR num
 - Counter.reset(n=0):将计数器的值重置为n,默认重置为0
   - 调用GETSET命令.虽然使用SET命令也可以达到重置的效果,但使用GETSET可以在重置计数器的同时获得计数器之前的值,这有时候会有用.
 ```
+# encoding:utf-8
 
+class Counter:
+  def __init__(self, key, client):
+    self.key = key
+    self.client = client
+    
+  def incr(self, n=1):
+    counter = self.client.incr(self.key, n)
+    return int(counter)
+    
+  def decr(self, n=1):
+    counter = self.client.decr(self.key, )
 ```
