@@ -266,5 +266,21 @@ DECRBY key decrement
 ```
 INCRBY num 100
 100
-
+INCRBY num 25
+125
+DECRBY num 10
+115
+DECRBY num 50
+65
 ```
+### 增一和减一
+```
+INCR key
+```
+* 加1,等同于执行INCRBY key 1
+* 复杂度O(1)
+```
+DECR key
+```
+* 减1,等同于执行DECRBY key 1
+* 复杂度O(1)
