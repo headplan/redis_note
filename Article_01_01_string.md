@@ -284,3 +284,22 @@ DECR key
 ```
 * 减1,等同于执行DECRBY key 1
 * 复杂度O(1)
+```
+SET num 10
+OK
+INCR num
+11
+DECR num
+10
+```
+### 示例:计数器(counter)
+很多网站都使用了计数器来记录页面被访问的次数.
+** 计数器API及其实现 **
+- Counter(name,client):设置计数器的名字以及客户端
+- Counter.incr():将计数器的值增一,然后返回计数器的值,调用INCR命令
+- Counter.get():返回计数器当前的值,调用GET命令
+- Counter.reset(n=0):将计数器的值重置为n,默认重置为0
+  - 调用GETSET命令.虽然使用SET命令也可以达到重置的效果,但使用GETSET可以在重置计数器的同时获得计数器之前的值,这有时候会有用.
+```
+
+```
