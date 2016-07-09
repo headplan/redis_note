@@ -353,3 +353,29 @@ class IdGenerator:
 ```
 INCRBYFLOAT key increment
 ```
+* 为字符串键key存储的值加上浮点数增量increment,命令返回操作执行之后,键key的值
+* 没有相应的DECRBYFLOAT,但可以通过给定负值来达到DECRBYFLOAT的效果
+* 复杂度为O(1)
+```
+SET num 10
+OK
+INCRBYFLOAT num 3.14
+"13.14"
+INCRBYFLOAT num -2.04 # 通过传递负值来达到做减法的效果
+"11.1"
+```
+** 注意事项 **
+
+即使字符串键储存的是数字值,它也可以执行APPEND、STRLEN、SETRANGE和GETRANGE.当数字值执行这些命令的时候,会先转成字符串再执行命令.
+```
+SET num 123
+OK
+STRLEN num
+3
+APPEND num 456
+6
+GET num
+123456
+```
+
+## 二进制数据操作
