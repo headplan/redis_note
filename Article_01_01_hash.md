@@ -9,5 +9,17 @@
 ![散列](Snip20160709_1.png)
 
 ## 基本操作
-
+### 关联域值对
+```
+HSET key field value
+```
+* 在散列键key中关联给定的域值对field和value
+* 如果域field之前没有关联值,那么命令返回1
+* 如果域field已经有关联值,那么命令用新值覆盖旧值,并返回0
+* 复杂度为O(1)
+```
+HSET msg "id" 10086
+HSET msg "sender" "peter"
+HSET msg "receiver" "jack"
+```
 
