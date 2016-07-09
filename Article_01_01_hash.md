@@ -22,4 +22,21 @@ HSET msg "id" 10086
 HSET msg "sender" "peter"
 HSET msg "receiver" "jack"
 ```
+### 获取域关联的值
+```
+HGET key field
+```
+* 返回散列键key中,域field所关联的值
+* 如果域field没有关联值,那么返回nil
+* 复杂度O(1)
+```
+HGET msg "id"
+HGET msg "sender"
+HGET msg "content"
+```
+### 仅当域不存在时,关联域值对
+```
+HSETNX key field value
+```
+
 
