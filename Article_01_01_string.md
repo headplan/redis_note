@@ -349,3 +349,7 @@ class IdGenerator:
     new_id = self.client.incr(self.key)
     return int(new_id)
 ```
+### 浮点数的自增和自减
+```
+INCRBYFLOAT key increment
+```
