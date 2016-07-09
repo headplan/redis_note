@@ -38,5 +38,46 @@ HGET msg "content"
 ```
 HSETNX key field value
 ```
-如果散列键key中,域field不存在(就是还没有关联的值),那么关联给定的域值对field和value.
-
+* 如果散列键key中,域field不存在(就是还没有关联的值),那么关联给定的域值对field和value.
+* 如果域field已经有与之相关联的值,那么命令不做动作.
+* 复杂度O(1)
+```
+HSETNX msg "content" "Good morning"
+HSETNX msg "content" "asdfsaf"
+0 # 不做动作
+```
+### 检查域是否存在
+```
+HEXISTS key field
+```
+* 查看散列键key中,给定域field是否存在
+* 存在返回1
+* 不存在返回0
+* 复杂度为O(1)
+```
+HEXISTS msg "id"
+HEXISTS msg "content"
+```
+### 删除给定的域值对
+```
+HDEL key field [field...]
+```
+* 删除散列键key中的一个或多个指定域,以及这些域的值
+* 不存在被忽略
+* 返回被成功删除的数量
+* 复杂度为O(N),N为被删除的个数
+```
+HDEL msg "id" "content" "receiver"
+```
+### 获取散列包含的键值对数量
+```
+HLEN key
+```
+* 返回散列键key包含的域值对数量
+* 复杂度为O(1)
+```
+HLEN msg
+HDEL msg "date"
+HLEN msg
+```
+## 批量操作
