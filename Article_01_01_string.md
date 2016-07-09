@@ -332,4 +332,20 @@ class Counter:
 ** id生成器API以其实现 **
 - IdGenerator(name,client):设置id生成器的名字和客户端
 - IdGenerator.gen():生成一个新的自增id,调用INCR命令
-- IdGenerator.init(n):保留前n个id,防止抢注,需要在系统开始运作前执行,否则会出现重复id.例如,要保留前一万个id,那么就需要执行IdGenerator.init(10000),这样生成器创建的id就会从10001开始.
+- IdGenerator.init(n):保留前n个id,防止抢注,需要在系统开始运作前执行,否则会出现重复id.例如,要保留前一万个id,那么就需要执行IdGenerator.init(10000),这样生成器创建的id就会从10001开始.调用SET命令.
+```
+# coding:utf-8
+
+class IdGenerator:
+  
+  def __init__(self, key, client):
+    self.key = key
+    self.client = client
+    
+  def init(self, n):
+    self.client.set(self.key, n)
+    
+  def gen(self):
+    new_id = self.client.incr(self.key)
+    return int(new_id)
+```
