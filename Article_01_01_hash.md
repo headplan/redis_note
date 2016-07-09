@@ -38,5 +38,5 @@ HGET msg "content"
 ```
 HSETNX key field value
 ```
-
+如果散列键key中,域field不存在(就是还没有关联的值),那么关联给定的域值对field和value.
 
