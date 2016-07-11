@@ -81,3 +81,6 @@ HDEL msg "date"
 HLEN msg
 ```
 ## 批量操作
+### 一次设置或获取散列中的多个域值对
+```
+HMSET key field value [field value ...]
