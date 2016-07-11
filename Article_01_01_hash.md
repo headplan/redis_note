@@ -218,5 +218,8 @@ class Counter:
     self.client.hset(COUNTER_KEY, self.name, n)
     return int(counter)
   def get(self):
-    
+    counter = self.client.hget(COUNTER_KEY, self.name)
+    if counter is None:
+      counter = 0
+    return int(counter)
 ```
