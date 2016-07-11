@@ -103,3 +103,14 @@ HMGET mesg "id" "sender" "receiver"
 3) "jack"
 ```
 ### 获取散列包含的所有域,值,或者域值对
+```
+HKEYS key
+```
+* 返回散列键key包含的所有域
+* 复杂度O(N)
+
+```
+HVALS key
+```
+* 返回散列键key中,所有域的值
+* 复杂度O(N)
