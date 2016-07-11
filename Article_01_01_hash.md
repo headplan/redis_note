@@ -126,3 +126,5 @@ HKEYS msg # 获取所有域
 HVALS msg # 获取所有值
 HGETALL msg # 获取所有域值对
 ```
+
+### 数字操作
