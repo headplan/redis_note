@@ -114,3 +114,15 @@ HVALS key
 ```
 * 返回散列键key中,所有域的值
 * 复杂度O(N)
+
+```
+HGETALL key
+```
+* 返回散列键key包含的所有域值对
+* 复杂度O(N)
+
+```
+HKEYS msg # 获取所有域
+HVALS msg # 获取所有值
+HGETALL msg # 获取所有域值对
+```
