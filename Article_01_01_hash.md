@@ -127,4 +127,12 @@ HVALS msg # 获取所有值
 HGETALL msg # 获取所有域值对
 ```
 
-### 数字操作
+## 数字操作
+和字符串键的值一样,散列里面域的值也可以被解释为数字,并执行相应的数字操作.
+### 对域的值执行自增操作
+```
+HINCRBY key field increment
+```
+* 为散列键key中,域field的值加上整数增量increment
+* 复杂度O(1)
+
