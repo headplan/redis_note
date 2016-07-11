@@ -136,3 +136,18 @@ HINCRBY key field increment
 * 为散列键key中,域field的值加上整数增量increment
 * 复杂度O(1)
 
+```
+HINCRBYFLOAT key field increment
+```
+* 为散列键key中,域field的值加上浮点数增量increment
+* 复杂度O(1)
+
+** 虽然Redis没有提供和上面两个命令相匹配的HDECRBY和HDECRBYFLOAT命令,但可以通过将increment设为负数来达到减法的效果 **
+
+```
+HINCRBY numbers x 100
+HINCRBY numbers x -50
+HINCRBYFLOAT numbers x 3.14
+```
+
+
