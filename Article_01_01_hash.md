@@ -188,5 +188,5 @@ HEXISTS - EXISTS(检查一个键是否存在,不仅限于字符串键)
 Counter(name, client):设置计数器的名字以及客户端
 Counter.incr():将计数器的值增一,然后返回计数器的值,调用HINCRBY命令
 Counter.get():返回计数器当前的值,调用HGET命令
-Counter.reset(n=0):将计数器的值重置为n,默认重置为0
+Counter.reset(n=0):将计数器的值重置为n,默认重置为0,调用HGET命令和HSET命令
 ```
