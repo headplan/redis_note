@@ -150,4 +150,17 @@ HINCRBY numbers x -50
 HINCRBYFLOAT numbers x 3.14
 ```
 
-
+## 散列键和字符串键
+### 效果类似的命令
+```
+HSET - SET
+HGET - GET
+HSETNX - SETNX
+HDEL - DEL(删除一个键,不仅限于字符串键)
+HMSET - MSET
+HMGET - MGET
+HINCRBY - INCRBY
+HINCRBYFLOAT - INCRBYFLOAT
+HEXISTS - EXISTS(检查一个键是否存在,不仅限于字符串键)
+```
+### 使用散列的好处
