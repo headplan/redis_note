@@ -217,4 +217,6 @@ class Counter:
       counter = 0
     self.client.hset(COUNTER_KEY, self.name, n)
     return int(counter)
+  def get(self):
+    
 ```
