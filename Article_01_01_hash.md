@@ -84,3 +84,22 @@ HLEN msg
 ### 一次设置或获取散列中的多个域值对
 ```
 HMSET key field value [field value ...]
+```
+* 在散列键key中关联多个域值对,相当于执行多个HSET
+* 复杂度O(N),N为域值对数量
+
+```
+HMGET key field value [field ...]
+```
+* 返回散列键key中,一个或多个域的值,相当于同时执行多个HGET
+* 复杂度O(N),N为域值对数量
+
+```
+HMSET msg "id" 10086 "sender" "peter" "receiver" "jack"
+OK
+HMGET mesg "id" "sender" "receiver"
+1) "10086"
+2) "peter"
+3) "jack"
+```
+### 获取散列包含的所有域,值,或者域值对
