@@ -24,6 +24,7 @@ LPUSH key value [value ...]
 
 * 复杂度O\(N\),N为被推入值的数量,如果只推入一个值,就是O\(1\)
 
+
 ```
 LPUSH lst "lua"
 LPUSH lst "Python"
@@ -37,6 +38,63 @@ LPUSH lst "C"
 ```
 LPUSH lst "lua" "Python" "C"
 ```
+
+注:值被推入的顺序和参数给定的顺序正好相反
+
+#### 从列表的右端推入值
+
+```
+RPUSH key value [value ...]
+```
+
+* 将一个或以上数量的值依次推入到列表的右端,命令返回新值被推入之后,列表目前包含的项数量.
+
+* 复杂度为O\(N\),N为被推入值的数量
+
+```
+RPUSH lst "JS"
+RPUSH lst "Ruby"
+Rpush lst "C"
+```
+
+#### 从列表的右端推入多个值
+
+如果执行 RPUSH 命令时给定了多个值,那么各个值将按照给定时的顺序,从左到右依次被推入到列表的右端.
+
+```
+RPUSH lst "JS" "Ruby" "C"
+```
+
+注:值被推入的顺序和参数给定的顺序正好相反
+
+#### 从列表的两端弹出项
+
+```
+LPOP key - 移除并返回列表最左端的项 - 复杂度O(1)
+RPOP key - 移除并返回列表最右端的项 - 复杂度O(1)
+```
+
+![](/Snip20160712_7.png)
+
+```
+RPUSH lst "Clojure" "Ruby" "C" "Python" "Lua"
+LPOP lst "Clojure"
+LPOP lst "Ruby"
+RPOP lst "Lua"
+RPOP lst "Python"
+```
+
+## 长度,索引和范围操作
+
+#### 获取列表的长度
+
+```
+LLEN key
+```
+
+* 返回列表键key的长度,就是返回列表包含的列表项数量
+
+* 
 
 
 
