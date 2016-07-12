@@ -51,6 +51,7 @@ RPUSH key value [value ...]
 
 * 复杂度为O\(N\),N为被推入值的数量
 
+
 ```
 RPUSH lst "JS"
 RPUSH lst "Ruby"
@@ -94,7 +95,49 @@ LLEN key
 
 * 返回列表键key的长度,就是返回列表包含的列表项数量
 
-* 
+* 因为Redis会记录每个列表的长度,所以这个命令无需遍历列表
+* 复杂度为O\(1\)
 
+```
+LLEN lst
+LPOP lst
+LLEN lst
+```
 
+#### 返回给定索引上的项
+
+```
+LINDEX key index
+```
+
+* 返回列表键key中,指定索引index上的列表项
+
+* index索引可以是整数或者负数
+* 复杂度为O\(N\),N为列表的长度
+
+```
+LINDEX lst 1
+LINDEX lst 4
+LINDEX lst -3
+```
+
+#### 返回给定索引范围之内的所有项
+
+```
+LRANGE key start stop
+```
+
+* 返回列表键key中,从索引start至索引stop范围内的所有列表项.
+
+* 两个索引参数都可以是正数或者负数
+* 复杂度为O\(N\),N为被返回的列表项数量
+
+```
+LRANGE lst 0 2
+LRANGE lst -3 -1
+```
+
+#### 示例:使用列表实现用户时间线
+
+Twitter使用Redis的列表来存储用户时间线,列表中的每个项都包含
 
