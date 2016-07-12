@@ -1,0 +1,10 @@
+{
+    "plugins": [
+        "-theme-default",
+        "-fontsettings",
+        "-search",
+        "-highlight",
+        "-sharing",
+        "-lunr"
+    ]
+}
