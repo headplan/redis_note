@@ -63,15 +63,29 @@ PFMERGE destkey sourcekey \[sourcekey ...\]
 
 **三个命令使用示例**
 
+```
+PFADD unique::ip::counter '192.168.0.1'
+(int)1
+PFADD unique::ip::counter '127.0.0.1'
+(int)1
+PFCOUNT unique::ip::counter
+(int)3
 
-
-
+PFADD str1 "apple" "banana" "cherry"
+int(1)
+PFCOUNT str1
+int(3)
+PFADD str2 "apple" "cherry" "durian" "mongo"
+int(1)
+PFCOUNT str2
+int(4)
+PFMERGE str1&2 str1 str2
+OK
+PFCOUNT str1&2
+int(5)
+```
 
 **唯一计数器的API及其实现**
-
-
-
-
 
 
 
