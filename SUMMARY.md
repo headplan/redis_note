@@ -15,6 +15,7 @@
   * [发布与订阅](数据管理与附加功能/fa-bu-yu-ding-yue.md)
   * [流水线与事务](数据管理与附加功能/liu-shui-xian-yu-shi-wu.md)
   * [Lua脚本](数据管理与附加功能/luajiao-ben.md)
-* [Redis应用构建](应用构建.md)
-* [Redis配置认证密码](redispei-zhi-ren-zheng-mi-ma.md)
+* [应用构建](应用构建.md)
+* [相关资料](xiang-guan-zi-liao.md)
+  * [配置认证密码](redispei-zhi-ren-zheng-mi-ma.md)
 
