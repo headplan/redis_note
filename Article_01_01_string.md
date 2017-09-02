@@ -36,8 +36,6 @@ GET key
 * 返回字符串键key存储的值
 * 复杂度为O\(1\)
 
-### 
-
 ### 仅在键不存在的情况下进行设置
 
 ```
@@ -49,15 +47,6 @@ SETNX key value
 * 键不存在并且设置成功时,命令返回1
 * 键已经存在而导致设置失败时,命令返回0
 * 复杂度为O\(1\)
-
-```
-SETNX new-key "new key"
-1
-SETNX new-key "new new key"
-0 # 键已存在设置失败返回0
-GET new-key
-new key
-```
 
 ### 同时设置或获取多个字符串键的值
 
@@ -71,7 +60,7 @@ new key
 
 * O\(N\)复杂度,N为要获取的字符串键的数量
 
-** 设置或获取个人信息 **
+**设置或获取个人信息 **
 
 通过MSET和MGET一次性设置和获取用户名,电子邮件,个人网站等信息.
 
@@ -101,16 +90,6 @@ MSETNX key value [key value...]
 * 返回1表示设置成功,返回0表示设置失败.
 * 复杂度为O\(N\),N为给定的键数量.
 
-```
-MSETNX nx-1 "hello" nx-2 "world" nx-3 "good luck"
-1
-SET ex-key "bad key here"
-OK
-MSETNX nx-4 "apple" nx-5 "banana" ex-key "cherry" nx-6 "durian"
-0
-因为ex-key键已经存在,所以返回0,执行失败
-```
-
 ### 设置新值并返回旧值
 
 ```
@@ -119,15 +98,6 @@ GETSET key new-value
 
 * 将字符串键的值设置为new-value,并返回字符串键在设置新值之前存储的就的值\(old value\).
 * 复杂度为O\(1\)
-
-```
-SET getset-str "imoldvalue"
-OK
-GETSET getset-str "imnewvalue"
-imoldvalue
-GET getset-str
-imnewvalue
-```
 
 ** 用伪代码表示GETSET的定义 **
 
@@ -148,15 +118,6 @@ APPEND key value
 * O\(N\)复杂度,其中N为被推入值的长度
 * 向一个不存在的键key末尾追加会新创建一个key-value
 
-```
-SET myPhone "nokia"
-OK
-APPEND myPhone "-1110"
-10
-GET myPhone
-"nokia-1110"
-```
-
 ### 返回值的长度
 
 ```
@@ -165,17 +126,6 @@ STRLEN key
 
 * 返回字符串键key存储的值的长度
 * 因为Redis会记录每个字符串值的长度,所以获取该值的长度的复杂度为O\(1\)
-
-```
-SET msg "hello"
-OK
-STRLEN msg
-5
-APPEND msg " world"
-11
-STRLEN msg
-11
-```
 
 ---
 
@@ -217,6 +167,7 @@ SETRANGE key index value
 * 返回键key存储的字符串值中start和end两个索引之间的内容\(包含start和end\)
 
 * GETRANGE的索引可以是正数或负数
+
 * 复杂度为O\(N\),N为被选中内容的长度
 
   ```
@@ -255,9 +206,11 @@ SETRANGE key index value
 * 将key所存储的值加上增量increment,返回操作执行之后键key的当前值.
 
 * 复杂度为O\(1\)
+
   ```
   DECRBY key decrement
   ```
+
 * 将key所存储的值减去减量decrement,返回操作执行之后键key的当前值.
 * 复杂度为O\(1\)  
   如果执行上面的命令时,key不存在,那么会将key初始化0,然后再执行增加或者减少操作.
@@ -282,9 +235,11 @@ SETRANGE key index value
 * 加1,等同于执行INCRBY key 1
 
 * 复杂度O\(1\)
+
   ```
   DECR key
   ```
+
 * 减1,等同于执行DECRBY key 1
 * 复杂度O\(1\)
 
@@ -305,6 +260,7 @@ SETRANGE key index value
 * Counter\(name,client\):设置计数器的名字以及客户端
 
 * Counter.incr\(\):将计数器的值增一,然后返回计数器的值,调用INCR命令
+
 * Counter.get\(\):返回计数器当前的值,调用GET命令
 * Counter.reset\(n=0\):将计数器的值重置为n,默认重置为0
   * 调用GETSET命令.虽然使用SET命令也可以达到重置的效果,但使用GETSET可以在重置计数器的同时获得计数器之前的值,这有时候会有用.
