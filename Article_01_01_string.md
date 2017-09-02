@@ -50,14 +50,18 @@ SETNX key value
 
 #### 同时设置或获取多个字符串键的值
 
-* MSET key value \[key value...\]
+```
+MSET key value [key value...]
+```
+
 * 一次为一个或多个字符串键设置值,效果和同时执行多个SET命令一样,命令返回OK
 * O\(N\)复杂度,N为字符串键的数量
 
-* MGET key \[key...\]
+```
+MGET key [key...]
+```
 
 * 一次返回一个或多个字符串键的值,效果和同时执行多个GET命令一样
-
 * O\(N\)复杂度,N为要获取的字符串键的数量
 
 **设置或获取个人信息 **
@@ -156,9 +160,7 @@ GETRANGE key start end
 ```
 
 * 返回键key存储的字符串值中start和end两个索引之间的内容\(包含start和end\)
-
 * GETRANGE的索引可以是正数或负数
-
 * 复杂度为O\(N\),N为被选中内容的长度
 
   ![范围取值](Snip20160707_3.png)
@@ -188,155 +190,46 @@ INCRBY key increment
 ```
 
 * 将key所存储的值加上增量increment,返回操作执行之后键key的当前值.
-
 * 复杂度为O\(1\)
 
-  ```
-  DECRBY key decrement
-  ```
+```
+DECRBY key decrement
+```
 
 * 将key所存储的值减去减量decrement,返回操作执行之后键key的当前值.
+* 复杂度为O\(1\)
 
-* 复杂度为O\(1\)  
-  如果执行上面的命令时,key不存在,那么会将key初始化0,然后再执行增加或者减少操作.
+> 如果执行上面的命令时,key不存在,那么会将key初始化0,然后再执行增加或者减少操作.
 
-  ```
-  INCRBY num 100
-  100
-  INCRBY num 25
-  125
-  DECRBY num 10
-  115
-  DECRBY num 50
-  65
-  ```
+#### 增一和减一
 
-  ### 增一和减一
-
-  ```
-  INCR key
-  ```
+```
+INCR key
+```
 
 * 加1,等同于执行INCRBY key 1
-
 * 复杂度O\(1\)
 
-  ```
-  DECR key
-  ```
+```
+DECR key
+```
 
 * 减1,等同于执行DECRBY key 1
-
 * 复杂度O\(1\)
 
-  ```
-  SET num 10
-  OK
-  INCR num
-  11
-  DECR num
-  10
-  ```
-
-  ### 示例:计数器\(counter\)
-
-  很多网站都使用了计数器来记录页面被访问的次数.  
-  ** 计数器API及其实现 **
-
-* Counter\(name,client\):设置计数器的名字以及客户端
-
-* Counter.incr\(\):将计数器的值增一,然后返回计数器的值,调用INCR命令
-
-* Counter.get\(\):返回计数器当前的值,调用GET命令
-
-* Counter.reset\(n=0\):将计数器的值重置为n,默认重置为0
-
-  * 调用GETSET命令.虽然使用SET命令也可以达到重置的效果,但使用GETSET可以在重置计数器的同时获得计数器之前的值,这有时候会有用.
-    \`\`\`
-    # encoding:utf-8
-
-class Counter:  
-  def **init**\(self, key, client\):  
-    self.key = key  
-    self.client = client
-
-def incr\(self, n=1\):  
-    counter = self.client.incr\(self.key, n\)  
-    return int\(counter\)
-
-def decr\(self, n=1\):  
-    counter = self.client.decr\(self.key, n\)  
-    return int\(counter\)
-
-def reset\(self, n=0\):  
-    counter = self.client.getset\(self.key, n\)  
-    if counter is None:  
-      counter = 0  
-    return int\(counter\)
-
-def get\(self\):  
-    counter = self.client.get\(self.key\)  
-    if counter is None:
-
-```
-### id生成器
-很多网站在创建新条目的时候,都会使用id生成器来为条目创建唯一标识符.例如一个论坛每注册一个新用户都会为这个新用户创建一个用户ID,比如12345,然后访问user/12345就可以看到这个用户的个人页面.或者一个用户发一个帖子,这个帖子也会创建一个帖子ID,/topic/10086 就可以看到这个帖子的内容.ID通常都是连续的,比如1003,1004,1005等.
-
-** id生成器API以其实现 **
-- IdGenerator(name,client):设置id生成器的名字和客户端
-- IdGenerator.gen():生成一个新的自增id,调用INCR命令
-- IdGenerator.init(n):保留前n个id,防止抢注,需要在系统开始运作前执行,否则会出现重复id.例如,要保留前一万个id,那么就需要执行IdGenerator.init(10000),这样生成器创建的id就会从10001开始.调用SET命令.
-```
-
-# coding:utf-8
-
-class IdGenerator:
-
-def **init**\(self, key, client\):  
-    self.key = key  
-    self.client = client
-
-def init\(self, n\):  
-    self.client.set\(self.key, n\)
-
-def gen\(self\):  
-    new\_id = self.client.incr\(self.key\)  
-    return int\(new\_id\)
-
-```
 ### 浮点数的自增和自减
-```
 
+```
 INCRBYFLOAT key increment
-
 ```
+
 * 为字符串键key存储的值加上浮点数增量increment,命令返回操作执行之后,键key的值
 * 没有相应的DECRBYFLOAT,但可以通过给定负值来达到DECRBYFLOAT的效果
-* 复杂度为O(1)
-```
+* 复杂度为O\(1\)
 
-SET num 10  
-OK  
-INCRBYFLOAT num 3.14  
-"13.14"  
-INCRBYFLOAT num -2.04 \# 通过传递负值来达到做减法的效果  
-"11.1"
+**注意事项**
 
-```
-** 注意事项 **
-
-即使字符串键储存的是数字值,它也可以执行APPEND、STRLEN、SETRANGE和GETRANGE.当数字值执行这些命令的时候,会先转成字符串再执行命令.
-```
-
-SET num 123  
-OK  
-STRLEN num  
-3  
-APPEND num 456  
-6  
-GET num  
-123456  
-\`\`\`
+> 即使字符串键储存的是数字值,它也可以执行APPEND、STRLEN、SETRANGE和GETRANGE.当数字值执行这些命令的时候,会先转成字符串再执行命令.
 
 ## 二进制数据操作
 
