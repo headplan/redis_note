@@ -231,7 +231,64 @@ INCRBYFLOAT key increment
 
 > 即使字符串键储存的是数字值,它也可以执行APPEND、STRLEN、SETRANGE和GETRANGE.当数字值执行这些命令的时候,会先转成字符串再执行命令.
 
-## 二进制数据操作
+---
+
+### 二进制数据操作
+
+> SET , GET , SETNX , APPEND等命令同样可以用于设置二进制数据 .
+
+因为Redis自带的客户端redis-cli没办法方便的设置二进制数据 , 所以这里使用Python客户端来进行 , 当然也可以使用PHP的Psysh .  
+
+```
+import redis
+r = redis.Redis()
+r.set('bits', 0b10010100)
+bin(int(r.get('bits')))
+r.append('bits', 0b111)
+bin(int(r.get('bits')))
+```
+
+```
+$r = new Redis();
+$r->connect('127.0.0.1', 6379);
+$r->ping();
+$r->set('bits2', 0b10010100);
+decbin($r->get('bits2'));
+$r->append('bits2', 0b111);
+decbin($r->get('bits2'));
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
