@@ -4,7 +4,7 @@
   * [初识Redis](Chapter_01.md)
 * [数据结构](Article_01_01.md)
   * [字符串](Article_01_01_string.md)
-    * [应用例子](Article_01_01_string/ying-yong-li-zi.md)
+    * [应用实例](Article_01_01_string/ying-yong-li-zi.md)
   * [散列](Article_01_01_hash.md)
   * [列表](Article_01_01_list.md)
   * [集合](集合.md)
