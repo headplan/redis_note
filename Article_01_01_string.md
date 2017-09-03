@@ -317,9 +317,9 @@ BITOP operation destkey key [key ...]
 
 ### 存储中文时的注意事项
 
-注意的原因 , 即英文字符只需要单字节来存储 , 一个中文字符却需要使用多个字节来存储 . 
+注意的原因 , 即英文字符只需要单字节来存储 , 一个中文字符却需要使用多个字节来存储 .
 
-所以strlen , setrange , getrange不适用于中文这样的多字节字符存储 . 
+所以strlen , setrange , getrange不适用于中文这样的多字节字符存储 .
 
 > 在redis-cli中使用中文时 , 必须打开--raw选项 , 才能正常显示中文
 

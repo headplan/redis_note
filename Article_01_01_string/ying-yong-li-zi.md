@@ -115,3 +115,7 @@ def gen\(self\):
     new\_id = self.client.incr\(self.key\)  
     return int\(new\_id\)
 
+示例:实现在线人数统计
+
+示例:使用Redis缓存热门图片
+
