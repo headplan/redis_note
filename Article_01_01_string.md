@@ -302,7 +302,7 @@ start和end参数的设置和GETRANGE命令类似 , 都可以使用负数值:比
 BITOP operation destkey key [key ...]
 ```
 
-对一个或多个保存二进制位的字符串键执行位元操作,并将结果保存到destkey上 . operation可以是AND、OR、NOT、XOR这四种操作中的任意一种 : 
+对一个或多个保存二进制位的字符串键执行位元操作,并将结果保存到destkey上 . operation可以是AND、OR、NOT、XOR这四种操作中的任意一种 :
 
 | 命令 | 效果 |
 | :--- | :--- |
@@ -315,9 +315,13 @@ BITOP operation destkey key [key ...]
 * 复杂度为O\(N\) , N为进行计算的二进制位数量的总和 . 
 * 命令的返回值为计算所得结果的字节长度,相当于对destkey执行STRLEN
 
-1
+### 存储中文时的注意事项
 
+注意的原因 , 即英文字符只需要单字节来存储 , 一个中文字符却需要使用多个字节来存储 . 
 
+所以strlen , setrange , getrange不适用于中文这样的多字节字符存储 . 
+
+> 在redis-cli中使用中文时 , 必须打开--raw选项 , 才能正常显示中文
 
 
 
