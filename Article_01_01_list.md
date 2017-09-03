@@ -10,7 +10,7 @@
 
 ![](/Snip20160712_6.png)
 
-## 推入和弹出操作
+### 推入和弹出操作
 
 了解如何向列表添加项,以及如何从列表里面删除项.
 
@@ -23,7 +23,6 @@ LPUSH key value [value ...]
 * 将一个或以上数量的值依次推入到列表的左端,命令返回新值被推入之后,列表目前包含的项数量
 
 * 复杂度O\(N\),N为被推入值的数量,如果只推入一个值,就是O\(1\)
-
 
 ```
 LPUSH lst "lua"
@@ -50,7 +49,6 @@ RPUSH key value [value ...]
 * 将一个或以上数量的值依次推入到列表的右端,命令返回新值被推入之后,列表目前包含的项数量.
 
 * 复杂度为O\(N\),N为被推入值的数量
-
 
 ```
 RPUSH lst "JS"
@@ -79,13 +77,19 @@ RPOP key - 移除并返回列表最右端的项 - 复杂度O(1)
 
 ```
 RPUSH lst "Clojure" "Ruby" "C" "Python" "Lua"
-LPOP lst "Clojure"
-LPOP lst "Ruby"
-RPOP lst "Lua"
-RPOP lst "Python"
+LPOP lst
+"Clojure"
+LPOP lst
+"Ruby"
+RPOP lst
+"Lua"
+RPOP lst
+"Python"
 ```
 
-## 长度,索引和范围操作
+---
+
+### 长度,索引和范围操作
 
 #### 获取列表的长度
 
@@ -96,6 +100,7 @@ LLEN key
 * 返回列表键key的长度,就是返回列表包含的列表项数量
 
 * 因为Redis会记录每个列表的长度,所以这个命令无需遍历列表
+
 * 复杂度为O\(1\)
 
 ```
@@ -113,6 +118,7 @@ LINDEX key index
 * 返回列表键key中,指定索引index上的列表项
 
 * index索引可以是整数或者负数
+
 * 复杂度为O\(N\),N为列表的长度
 
 ```
@@ -130,6 +136,7 @@ LRANGE key start stop
 * 返回列表键key中,从索引start至索引stop范围内的所有列表项.
 
 * 两个索引参数都可以是正数或者负数
+
 * 复杂度为O\(N\),N为被返回的列表项数量
 
 ```
