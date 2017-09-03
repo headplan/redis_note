@@ -64,58 +64,55 @@ class Cache:
 * Counter.reset\(n=0\):将计数器的值重置为n,默认重置为0
 
   * 调用GETSET命令.虽然使用SET命令也可以达到重置的效果,但使用GETSET可以在重置计数器的同时获得计数器之前的值,这有时候会有用.
-    \`\`\`
-    # encoding:utf-8
-
-class Counter:  
-  def **init**\(self, key, client\):  
-    self.key = key  
-    self.client = client
-
-def incr\(self, n=1\):  
-    counter = self.client.incr\(self.key, n\)  
-    return int\(counter\)
-
-def decr\(self, n=1\):  
-    counter = self.client.decr\(self.key, n\)  
-    return int\(counter\)
-
-def reset\(self, n=0\):  
-    counter = self.client.getset\(self.key, n\)  
-    if counter is None:  
-      counter = 0  
-    return int\(counter\)
-
-def get\(self\):  
-    counter = self.client.get\(self.key\)  
-    if counter is None:
 
 ```
+encoding:utf-8
+class Counter:
+  def init(self, key, client):
+    self.key = key
+    self.client = client
+def incr(self, n=1):
+    counter = self.client.incr(self.key, n)
+    return int(counter)
+def decr(self, n=1):
+    counter = self.client.decr(self.key, n)
+    return int(counter)
+def reset(self, n=0):
+    counter = self.client.getset(self.key, n)
+    if counter is None:
+      counter = 0
+    return int(counter)
+def get(self):
+    counter = self.client.get(self.key)
+    if counter is None:
+```
+
 ### id生成器
+
 很多网站在创建新条目的时候,都会使用id生成器来为条目创建唯一标识符.例如一个论坛每注册一个新用户都会为这个新用户创建一个用户ID,比如12345,然后访问user/12345就可以看到这个用户的个人页面.或者一个用户发一个帖子,这个帖子也会创建一个帖子ID,/topic/10086 就可以看到这个帖子的内容.ID通常都是连续的,比如1003,1004,1005等.
 
 ** id生成器API以其实现 **
-- IdGenerator(name,client):设置id生成器的名字和客户端
-- IdGenerator.gen():生成一个新的自增id,调用INCR命令
-- IdGenerator.init(n):保留前n个id,防止抢注,需要在系统开始运作前执行,否则会出现重复id.例如,要保留前一万个id,那么就需要执行IdGenerator.init(10000),这样生成器创建的id就会从10001开始.调用SET命令.
+
+* IdGenerator\(name,client\):设置id生成器的名字和客户端
+* IdGenerator.gen\(\):生成一个新的自增id,调用INCR命令
+* IdGenerator.init\(n\):保留前n个id,防止抢注,需要在系统开始运作前执行,否则会出现重复id.例如,要保留前一万个id,那么就需要执行IdGenerator.init\(10000\),这样生成器创建的id就会从10001开始.调用SET命令.
+
+```
+coding:utf-8
+class IdGenerator:
+def init(self, key, client):
+    self.key = key
+    self.client = client
+def init(self, n):
+    self.client.set(self.key, n)
+def gen(self):
+    new_id = self.client.incr(self.key)
+    return int(new_id)
 ```
 
-# coding:utf-8
+### 示例:实现在线人数统计
 
-class IdGenerator:
+### 示例:使用Redis缓存热门图片
 
-def **init**\(self, key, client\):  
-    self.key = key  
-    self.client = client
 
-def init\(self, n\):  
-    self.client.set\(self.key, n\)
-
-def gen\(self\):  
-    new\_id = self.client.incr\(self.key\)  
-    return int\(new\_id\)
-
-示例:实现在线人数统计
-
-示例:使用Redis缓存热门图片
 
