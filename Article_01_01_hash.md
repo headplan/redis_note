@@ -146,6 +146,8 @@ HVALS msg # 获取所有值
 HGETALL msg # 获取所有域值对
 ```
 
+---
+
 ## 数字操作
 
 和字符串键的值一样,散列里面域的值也可以被解释为数字,并执行相应的数字操作.
@@ -173,6 +175,8 @@ HINCRBY numbers x 100
 HINCRBY numbers x -50
 HINCRBYFLOAT numbers x 3.14
 ```
+
+---
 
 ## 散列键和字符串键
 
