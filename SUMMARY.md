@@ -14,6 +14,7 @@
   * [有序集合](有序集合.md)
     * [应用实例](有序集合/ying-yong-shi-li.md)
   * [HyperLogLog](hyperloglog.md)
+    * [应用实例](hyperloglog/ying-yong-shi-li.md)
 * [数据管理与附加功能](数据管理与附加功能.md)
   * [数据库管理](数据管理与附加功能/shu-ju-ku-guan-li.md)
   * [键过期](数据管理与附加功能/jian-guo-qi.md)
