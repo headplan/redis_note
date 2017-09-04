@@ -57,12 +57,18 @@ Redis提供了RENAME和RENAMENX两个命令 , 用于修改键的名字 :
 
 | 命令 | 作用 | 返回值 | 复杂度 |
 | :--- | :--- | :--- | :--- |
-| RENAME key newkey | 将键的名字从key改为newkey . 如果newkey已经存在 , 那么覆盖它 . | 键key不存在 , 或者key和newkey同名时 , 返回错误 . 修改成功时返回OK . | O\(1\) |
-| RENAMENX key newkey | 如果newkey不存在 , 那么将键key改名为newkey . 如果newkey已经存在 , 那么不做动作 .  | 修改成功返回1 , 修改失败返回0 .  | O\(1\) |
+| RENAME key newkey | 将键的名字从key改为newkey . 如果newkey已经存在 , 那么覆盖它 . | 键key不存在 , 返回错误 . 修改成功时返回OK . | O\(1\) |
+| RENAMENX key newkey | 如果newkey不存在 , 那么将键key改名为newkey . 如果newkey已经存在 , 那么不做动作 . | 修改成功返回1 , 修改失败返回0 . | O\(1\) |
 
 ---
 
-排序命令
+#### 对建的值进行排序
+
+SORT命令以及它的各个参数和选项 . 
+
+
+
+---
 
 获取键命令
 
