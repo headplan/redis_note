@@ -23,6 +23,7 @@
   * [Lua脚本](数据管理与附加功能/luajiao-ben.md)
 * [应用构建](应用构建.md)
 * [服务器配置与管理](fu-wu-qi-pei-zhi-yu-guan-li.md)
+* [Redis多机功能](redisduo-ji-gong-neng.md)
 * [相关资料](xiang-guan-zi-liao.md)
   * [配置认证密码](redispei-zhi-ren-zheng-mi-ma.md)
 
