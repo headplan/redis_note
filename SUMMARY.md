@@ -24,9 +24,9 @@
 * [应用构建](应用构建.md)
 * [服务器配置与管理](fu-wu-qi-pei-zhi-yu-guan-li.md)
   * [服务器配置](fu-wu-qi-pei-zhi-yu-guan-li/fu-wu-qi-pei-zhi.md)
-  * RDB持久化
-  * AOF持久化
-  * 服务器管理
+  * [RDB持久化](fu-wu-qi-pei-zhi-yu-guan-li/rdbchi-jiu-hua.md)
+  * [AOF持久化](fu-wu-qi-pei-zhi-yu-guan-li/aofchi-jiu-hua.md)
+  * [服务器管理](fu-wu-qi-pei-zhi-yu-guan-li/fu-wu-qi-guan-li.md)
 * [Redis多机功能](redisduo-ji-gong-neng.md)
 * [Redis实现原理](redisshi-xian-yuan-li.md)
 * [相关资料](xiang-guan-zi-liao.md)
