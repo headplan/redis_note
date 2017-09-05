@@ -18,6 +18,7 @@
 * [数据管理与附加功能](数据管理与附加功能.md)
   * [数据库管理](数据管理与附加功能/shu-ju-ku-guan-li.md)
   * [键过期](数据管理与附加功能/jian-guo-qi.md)
+    * [应用实例](数据管理与附加功能/jian-guo-qi/ying-yong-shi-li.md)
   * [发布与订阅](数据管理与附加功能/fa-bu-yu-ding-yue.md)
   * [流水线与事务](数据管理与附加功能/liu-shui-xian-yu-shi-wu.md)
   * [Lua脚本](数据管理与附加功能/luajiao-ben.md)
