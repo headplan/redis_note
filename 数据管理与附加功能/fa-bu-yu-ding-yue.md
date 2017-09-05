@@ -13,3 +13,9 @@ Redis的发布与订阅功能可以让用户将消息同时发送给多个客户
 
 ![](/assets/dingyue_1.png)B、C、D三个客户端正在订阅news::it频道 . 当客户端A向news::it频道发送消息“hello world”时,该消息将被频道转发至B、C、D三 个客户端 .
 
+#### 模式的订阅与消息发布
+
+![](/assets/dingyue_2.png)
+
+客户端C和D订阅了news::\[ie\]t模式,而这个模式又和news::it、news::et两个频道匹配,当news:: it频道或者news::et频道接收到消息的时候,这些消息不仅会被转发给频道的订阅者,也会被转发给客户端C和D
+
