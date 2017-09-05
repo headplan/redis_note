@@ -39,5 +39,11 @@ PSUBSCRIBE pattern [pattern ...]
 
 ```
 
+---
+
+### 订阅状态相关命令
+
+
+
 
 
