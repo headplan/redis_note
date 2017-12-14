@@ -179,7 +179,7 @@ redis> sort scores by *-score # sort命令首先获取三个元素
 
 **获取外部键的值作为返回值**
 
-在默认情况下 , SORT命令会返回被排序键的值为返回值 , 但是通过给定GET pattern选项 , 可以让SORT命令返回其他键的值来作为命令的返回值 . 
+在默认情况下 , SORT命令会返回被排序键的值为返回值 , 但是通过给定GET pattern选项 , 可以让SORT命令返回其他键的值来作为命令的返回值 .
 
 ```
 redis> sort scores alpha # 基于三个元素本身进行排序
@@ -192,6 +192,26 @@ redis> sort scores alpha get *-score # 对集合进行排序
 0 5                                  # 然后将这三个元素代入到*-name
 1 4                                  # 得出三个键
 2 3                                  # 然后返回这些键的值作为排序结果
+```
+
+**获取多个外部键的值**
+
+调用一次SORT命令可以给定多个GET选项 . 
+
+```
+redis> mset peter-score 4 jack-score 5 tommy-score 3
+redis> mset peter-name "peter" jack-name "jack" tommy-name "tommy"
+redis> sort scores alpha get # get *-score get *-name
+0 5
+1 jack
+2 jack
+3 4
+4 peter
+5 peter
+6 3
+7 tommy
+8 tommy
+# 当给定get #时,命令会返回被排序的值本身
 ```
 
 ---
