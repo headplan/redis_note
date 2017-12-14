@@ -106,12 +106,12 @@ redis> sort num666 # 按照值本身的大小进行排序
 
 **升序排序和降序排序**
 
-SORT命令允许用户通过给定ASC参数或DESC参数来分别指定排序顺序 : 
+SORT命令允许用户通过给定ASC参数或DESC参数来分别指定排序顺序 :
 
 * 默认给定ASC , 从小到大的顺序升序排序
 * 给定DESC , 从大到小的顺序降序排序
 
-不给定 , 则默认ASC排序 . 
+不给定 , 则默认ASC排序 .
 
 ```
 redis> sort num666 asc
@@ -120,7 +120,7 @@ redis> sort num666 desc
 
 **对文字进行排序**
 
-默认情况下 , SORT命令将键包含的值解释为浮点数 , 然后对浮点数进行排序 . 这里通过 , ALPHA参数 , 让SORT命令基于字典序对文字进行排序 . 
+默认情况下 , SORT命令将键包含的值解释为浮点数 , 然后对浮点数进行排序 . 这里通过 , ALPHA参数 , 让SORT命令基于字典序对文字进行排序 .
 
 ```
 redis> sadd sanguo "曹操" "刘备" "孙权"
@@ -137,11 +137,47 @@ redis> sort sanguo alpha
 2 曹操
 ```
 
-> 字典序\(lexicographical ordering\) - 是一种对于随机变量形成序列的排序方法 . 其方法是 , 按照字母顺序 , 或者数字小大顺序 , 由小到大的形成序列 . 
+> 字典序\(lexicographical ordering\) - 是一种对于随机变量形成序列的排序方法 . 其方法是 , 按照字母顺序 , 或者数字小大顺序 , 由小到大的形成序列 .
 >
-> 比如说有一个随机变量X包含{1 2 3}三个数值 . 
+> 比如说有一个随机变量X包含{1 2 3}三个数值 .
 >
 > 其字典排序就是{} {1} {1 2} {1 2 3} {2} {2 3} {3}
+
+**文字排序特别适用于有序集合**
+
+在一般情况下 , 有序集合里面的元素会根据分值来进行排序 , 但是通过执行带有ALPHA参数的SORT命令 , 可以根绝元素本身来进行排序 : 
+
+```
+redis> zadd scores 3 "peter" 6 "jack" 4 "tommy"
+3
+redis> zrange scores 0 -1 # 根据分值,对元素进行排序
+0 peter
+1 tommy
+2 jack
+redis> sort scores alpha # 根据元素本身进行排序
+0 jack
+1 peter
+2 tommy
+```
+
+**基于外部键的值进行排序**
+
+在默认情况下 , SORT命令在进行排序的时候 , 会使用被排序键本身包含的值来作为权重 . 但是通过执行BY pattern选项 , 就可以让SORT命令使用其他键的值来作为权重 , 对被排序键的值进行排序 . 
+
+```
+redis> sort scores alpha # 基于三个元素本身进行排序
+0 jack
+1 peter
+2 tommy
+redis> mset peter-score 4 jack-score 5 tommy-score 3
+OK # 设置三个字符串键作为权重
+redis> sort scores by *-score # sort命令首先获取三个元素
+0 tommy                       # 然后将它们代入到*-score模式里面
+1 peter                       # 得出三个-score键名
+2 jack                        # 然后获取这三个键的值作为排序的权重
+```
+
+
 
 ---
 
