@@ -196,7 +196,7 @@ redis> sort scores alpha get *-score # 对集合进行排序
 
 **获取多个外部键的值**
 
-调用一次SORT命令可以给定多个GET选项 . 
+调用一次SORT命令可以给定多个GET选项 .
 
 ```
 redis> mset peter-score 4 jack-score 5 tommy-score 3
@@ -212,6 +212,52 @@ redis> sort scores alpha get # get *-score get *-name
 7 tommy
 8 tommy
 # 当给定get #时,命令会返回被排序的值本身
+```
+
+**指定返回结果的数量**
+
+在默认情况下 , SORT命令总是返回被排序键的所有值作为结果 , 但是通过指定limit offset count选项 , 可以让命令在返回结果之前先跳过offset个值 , 然后只返回count个值 . 
+
+```
+redis> rpush num-test 8 3 7 4 6 5 1 0 2 9
+10
+redis> sort num-test limit 0 5
+0 0
+1 1
+2 2
+3 3
+4 4
+redis> sort num-test limit 5 5 # 跳过开头的5个值,返回紧接着的5个值
+0 5
+1 6 
+2 7
+3 8
+4 9
+```
+
+**存储排序结果**
+
+在默认情况下 , sort命令只会向客户端返回排序结果 , 但并不存储排序结果 . 通过指定选项 store destkey , 将排序结果存储到destkey里 . 
+
+```
+redis> lrange num-test 0 -1
+redis> sort num-test store sorted-num-test
+3
+redis> lrange sorted-num-test 0 -1
+```
+
+**使用多个选项和参数**
+
+sort命令允许用户同时使用前面提到的所有选项和参数 , 通过适当的组合使用不同的选项和参数 , 可以将sort命令打造成一个强大的排序工具以及数据获取工具 : 
+
+```
+redis> sort team-member-ids by *-KPI get # get *-name get *-KPI
+# 通过KPI值,对团队中各个成员的ID进行排序
+# 然后根据排序结果,依次获取成员的ID,名字和KPI值
+redis> sort names alpha desc get # get *-id get *-id get *-name limit 0 5 store profiles
+# 对names键的值进行文字形式的降序排序
+# 根据排序后的前五个值,获取值本身,以及其对应的id和名字
+# 然后将获取到的这些信息存储到的profiles键里面
 ```
 
 ---
