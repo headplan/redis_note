@@ -18,6 +18,7 @@
 * [数据管理与附加功能](dataandext.md)
   * [数据库管理](dataandext/shu-ju-ku-guan-li.md)
     * [获取数据库中的键](dataandext/shu-ju-ku-guan-li/huo-qu-shu-ju-ku-zhong-de-jian.md)
+    * [处理数据库本身](dataandext/shu-ju-ku-guan-li/chu-li-shu-ju-ku-ben-shen.md)
   * [键过期](dataandext/jian-guo-qi.md)
     * [应用实例](dataandext/jian-guo-qi/ying-yong-shi-li.md)
   * [发布与订阅](dataandext/fa-bu-yu-ding-yue.md)
