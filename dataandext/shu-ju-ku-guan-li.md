@@ -145,7 +145,7 @@ redis> sort sanguo alpha
 
 **文字排序特别适用于有序集合**
 
-在一般情况下 , 有序集合里面的元素会根据分值来进行排序 , 但是通过执行带有ALPHA参数的SORT命令 , 可以根绝元素本身来进行排序 : 
+在一般情况下 , 有序集合里面的元素会根据分值来进行排序 , 但是通过执行带有ALPHA参数的SORT命令 , 可以根绝元素本身来进行排序 :
 
 ```
 redis> zadd scores 3 "peter" 6 "jack" 4 "tommy"
@@ -162,7 +162,7 @@ redis> sort scores alpha # 根据元素本身进行排序
 
 **基于外部键的值进行排序**
 
-在默认情况下 , SORT命令在进行排序的时候 , 会使用被排序键本身包含的值来作为权重 . 但是通过执行BY pattern选项 , 就可以让SORT命令使用其他键的值来作为权重 , 对被排序键的值进行排序 . 
+在默认情况下 , SORT命令在进行排序的时候 , 会使用被排序键本身包含的值来作为权重 . 但是通过执行BY pattern选项 , 就可以让SORT命令使用其他键的值来作为权重 , 对被排序键的值进行排序 .
 
 ```
 redis> sort scores alpha # 基于三个元素本身进行排序
@@ -177,7 +177,22 @@ redis> sort scores by *-score # sort命令首先获取三个元素
 2 jack                        # 然后获取这三个键的值作为排序的权重
 ```
 
+**获取外部键的值作为返回值**
 
+在默认情况下 , SORT命令会返回被排序键的值为返回值 , 但是通过给定GET pattern选项 , 可以让SORT命令返回其他键的值来作为命令的返回值 . 
+
+```
+redis> sort scores alpha # 基于三个元素本身进行排序
+0 jack
+1 peter
+2 tommy
+redis> mset peter-score 4 jack-score 5 tommy-score 3
+OK # 设置三个字符串键作为权重
+redis> sort scores alpha get *-score # 对集合进行排序
+0 5                                  # 然后将这三个元素代入到*-name
+1 4                                  # 得出三个键
+2 3                                  # 然后返回这些键的值作为排序结果
+```
 
 ---
 
