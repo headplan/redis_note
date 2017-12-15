@@ -25,6 +25,8 @@
     * [相关命令](dataandext/fa-bu-yu-ding-yue/xiang-guan-ming-ling.md)
     * [应用实例](dataandext/fa-bu-yu-ding-yue/ying-yong-shi-li.md)
   * [流水线与事务](dataandext/liu-shui-xian-yu-shi-wu.md)
+    * [流水线功能](dataandext/liu-shui-xian-yu-shi-wu/liu-shui-xian-gong-neng.md)
+    * 事务功能
   * [Lua脚本](dataandext/luajiao-ben.md)
 * [应用构建](ying-yong-gou-jian.md)
 * [服务器配置与管理](fu-wu-qi-pei-zhi-yu-guan-li.md)

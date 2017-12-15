@@ -96,7 +96,7 @@ PSETEX key milliseconds value
 
 还有前面提到的PEXPIRE、PEXPIREAT、PTTL
 
-在Redis 2.6.12版本,Redis又对SET命令进行了修改 , 支持可选的EX参数和PX参数 : 
+在Redis 2.6.12版本,Redis又对SET命令进行了修改 , 支持可选的EX参数和PX参数 :
 
 ```
 SET key value [EX seconds] [PX milliseconds]
