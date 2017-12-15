@@ -109,15 +109,17 @@ set([])
 PUBLISH channel message
 ```
 
-将消息发送至指定的频道 , 命令返回接收到消息的订阅者数量 . 
+将消息发送至指定的频道 , 命令返回接收到消息的订阅者数量 .
 
-复杂度为O\(N\) , N为接收到消息的订阅者数量\(包括通过订阅频道来接收消息的订阅者和通过订阅模式来接收消息的订阅者\) . 
+复杂度为O\(N\) , N为接收到消息的订阅者数量\(包括通过订阅频道来接收消息的订阅者和通过订阅模式来接收消息的订阅者\) .
 
 ```
 redis> PUBLISH news::it "hello world"
-(integer) 2
+
+(integer) 2
 redis> PUBLISH news::et "hello again"
-(integer) 1
+
+(integer) 1
 ```
 
 ![](/assets/fabuxiaoxi.png)
@@ -125,6 +127,54 @@ redis> PUBLISH news::et "hello again"
 ---
 
 ### 订阅状态相关命令
+
+**查看被订阅的频道**
+
+```
+PUBSUB CHANNELS [pattern]
+```
+
+列出目前至少有一个订阅者的频道 . 如果给定了可选的pattern参数 , 那么只列出与模式相匹配的频道 . 
+
+复杂度为O\(N\) , N为服务器中被订阅频道的总数量 . 
+
+```
+redis> PUBSUB CHANNELS # 有客户端正在订阅news::et和news::it频道
+1) "news::et"
+2) "news::it"
+redis> PUBSUB CHANNELS # 没有任何频道被订阅
+(empty list or set)
+redis> PUBSUB CHANNELS new::*
+```
+
+**查看频道的订阅者数量**
+
+```
+PUBSUB NUMSUB [channel-1 ... channel-N]
+```
+
+返回给定频道的订阅者数量 . 复杂度为O\(N\) , N为给定频道的数量 . 
+
+```
+redis> PUBSUB NUMSUB new::it new::et
+1) "new::it"
+2) (integer) 1
+3) "new::et"
+4) (integer) 1
+```
+
+**查看被订阅模式的数量**
+
+```
+PUBSUB NUMPAT
+```
+
+返回服务器目前被订阅的模式数量 . 复杂度为O\(1\) . 
+
+```
+redis> PUBSUB NUMPAT
+(integer) 3 # 服务器目前有三个模式被订阅
+```
 
 
 
