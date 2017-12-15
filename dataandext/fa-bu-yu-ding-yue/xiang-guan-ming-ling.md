@@ -53,6 +53,51 @@ Reading messages... (press Ctrl-C to quit)
 4) "world"
 ```
 
+#### 退订频道和退订模式
+
+**退订频道**
+
+```
+UNSUBSCRIBE [channel [channel ...]]
+```
+
+退订指定的频道 . 如果执行时没有指定任何频道 , 那么退订已订阅的所有频道 . 
+
+复杂度为O\(N\) , N为被退订的频道数量 . 
+
+**退订模式**
+
+```
+PUNSUBSCRIBE [pattern [pattern ...]]
+```
+
+退订指定的模式 . 如果执行时没有指定任何模式 , 那么退订已订阅的所有模式 . 
+
+复杂度为O\(M\) , M为服务器中被订阅模式的数量 . 
+
+退订命令的行为在各个客户端的表现都不同 , 比如redis-cli客户端就是通过直接退出客户端来进行退订 , 而Python或Ruby客户端则需要显示的执行退订命令 . 
+
+```
+# redis-cli 客户端
+redis> SUBSCRIBE news.it
+Reading messages... (press Ctrl-C to quit) 
+1) "subscribe"
+2) "news::it"
+3) (integer) 1
+^C
+
+# Python的Redis客户端
+>>> from redis import Redis
+>>> client = Redis()
+>>> pubsub = client.pubsub()
+>>> pubsub.subscribe('news::it') # 订阅频道
+>>> pubsub.channels # 列出已订阅的频道 
+set(['news::it'])
+>>> pubsub.unsubscribe('news::it') # 退订频道 
+>>> pubsub.channels
+set([])
+```
+
 ---
 
 ### 订阅状态相关命令
