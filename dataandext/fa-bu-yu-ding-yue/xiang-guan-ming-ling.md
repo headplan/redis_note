@@ -36,14 +36,26 @@ PSUBSCRIBE pattern [pattern ...]
 复杂度为O\(N\),N为被订阅模式的数量 .
 
 ```
+redis> PSUBSCRIBE news::[ie]t
+Reading messages... (press Ctrl-C to quit)
+1) "psubscribe"  # 订阅模式时返回的信息
+2) "news::[ie]t" # 被订阅的模式
+3) (integer) 1   # 客户端目前订阅的模式数量
 
+1) "pmessage"    # 这是从模式接收到的消息
+2) "news::[ie]t" # 被匹配的模式
+3) "news::it"    # 消息的来源频道(被匹配的频道)
+4) "hello"       # 消息正文
+
+1) "pmessage" 
+2) "news::[ie]t" 
+3) "news::et" 
+4) "world"
 ```
 
 ---
 
 ### 订阅状态相关命令
-
-
 
 
 
