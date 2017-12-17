@@ -37,6 +37,7 @@
 * [Redis多机功能](redisduo-ji-gong-neng.md)
   * [导论](redisduo-ji-gong-neng/dao-lun.md)
   * [复制和Sentinel](redisduo-ji-gong-neng/fu-zhi-he-sentinel.md)
+    * [Sentinel](redisduo-ji-gong-neng/fu-zhi-he-sentinel/sentinel.md)
   * [twemproxy](redisduo-ji-gong-neng/twemproxy.md)
   * [集群](redisduo-ji-gong-neng/ji-qun.md)
 * [Redis实现原理](redisshi-xian-yuan-li.md)
