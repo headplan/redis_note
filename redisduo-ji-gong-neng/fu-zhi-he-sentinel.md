@@ -55,23 +55,25 @@ Redis提供了两种方法来为某个主服务器创建从服务器 :
 
 ```
 127.0.0.1:6379> SET msg "hello world"
-OK
-127.0.0.1:6379> INCR counter 
+OK
+127.0.0.1:6379> INCR counter 
 (integer) 1
-127.0.0.1:6379> INCR counter 
+127.0.0.1:6379> INCR counter 
 (integer) 2
-127.0.0.1:6379> RPUSH lst 1 3 5 7 9 
+127.0.0.1:6379> RPUSH lst 1 3 5 7 9 
 (integer) 5
-127.0.0.1:6380> GET msg "hello world"
-127.0.0.1:6380> GET counter 
+127.0.0.1:6380> GET msg "hello world"
+127.0.0.1:6380> GET counter 
 "2"
 127.0.0.1:6380> LRANGE lst 0 -1 
 1) "1"
 2) "3"
-3) "5"
-4) "7” 
+3) "5"
+4) "7” 
 5) "9"
 ```
+
+### 处理服务器下线
 
 
 
