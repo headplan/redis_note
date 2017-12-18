@@ -50,21 +50,24 @@ $ redis-server sentinel.conf --sentinel
 
 ### Sentinel的配置
 
-指定要监视的主服务器 , 以及相关的监视参数 . 
+指定要监视的主服务器 , 以及相关的监视参数 .
 
 #### 监视配置选项
 
-Sentinel在启动时必须指定相应的配置文件 : 
+Sentinel在启动时必须指定相应的配置文件 :
 
 ```
 $ redis-sentinel sentinel.conf
 ```
 
-一个Sentinel配置文件至少要包含一个监视配置选项 , 用于指定被监视主服务器的相关信息 : 
+一个Sentinel配置文件至少要包含一个监视配置选项 , 用于指定被监视主服务器的相关信息 :
 
 ```
 sentinel monitor <name> <ip> <port> <quorum>
 ```
 
-
+* name - 用户为被监视主服务器设置的名字
+* ip - 被监视主服务器的IP地址
+* port - 被监视主服务器的端口号
+* quorum - 确认这个主服务器已下线所需要的最少Sentinel数量
 
