@@ -34,9 +34,9 @@ $ redis-server sentinel.conf --sentinel
 
 #### 服务器下线判断
 
-当一个Sentinel认为被监视的服务器已经下线时 , 它会向网络中的其他Sentinel进行确认 , 判断该服务器是否真的已经下线 . 
+当一个Sentinel认为被监视的服务器已经下线时 , 它会向网络中的其他Sentinel进行确认 , 判断该服务器是否真的已经下线 .
 
-如果下线的服务器为主服务器 , 那么Sentinel网络将对下线主服务器进行自动故障转移 , 通过将下线主服务器的某个从服务器提升为新的服务器 , 并让其他从服务器转为复制新的主服务器 , 以此来让系统重新回到上线状态 . 
+如果下线的服务器为主服务器 , 那么Sentinel网络将对下线主服务器进行自动故障转移 , 通过将下线主服务器的某个从服务器提升为新的服务器 , 并让其他从服务器转为复制新的主服务器 , 以此来让系统重新回到上线状态 .
 
 ![](/assets/fuwqxx.png)
 
@@ -47,4 +47,24 @@ $ redis-server sentinel.conf --sentinel
 #### 下线主服务器重新上线
 
 ![](/assets/xiaxianzhufwq.png)
+
+### Sentinel的配置
+
+指定要监视的主服务器 , 以及相关的监视参数 . 
+
+#### 监视配置选项
+
+Sentinel在启动时必须指定相应的配置文件 : 
+
+```
+$ redis-sentinel sentinel.conf
+```
+
+一个Sentinel配置文件至少要包含一个监视配置选项 , 用于指定被监视主服务器的相关信息 : 
+
+```
+sentinel monitor <name> <ip> <port> <quorum>
+```
+
+
 
