@@ -71,15 +71,15 @@ sentinel monitor <name> <ip> <port> <quorum>
 * port - 被监视主服务器的端口号
 * quorum - 确认这个主服务器已下线所需要的最少Sentinel数量
 
-例如 , 配置`sentinel monitor mymaster 127.0.0.1 6379 2`表示要监视的主服务器的名字为mymaster , 它的IP地址为127.0.0.1 , 端口号为6379 , 而确认这个主服务器已下线最少需要两个Sentinel同意 . 
+例如 , 配置`sentinel monitor mymaster 127.0.0.1 6379 2`表示要监视的主服务器的名字为mymaster , 它的IP地址为127.0.0.1 , 端口号为6379 , 而确认这个主服务器已下线最少需要两个Sentinel同意 .
 
-Sentinel可以自动发现并监视主服务器属下的所有从服务器 , 所以用户只需要给出主服务器的地址和端口号就可以了 . 
+Sentinel可以自动发现并监视主服务器属下的所有从服务器 , 所以用户只需要给出主服务器的地址和端口号就可以了 .
 
 #### 端口配置选项
 
-如果要在同一台机器上运行多个Sentinel实例 , 用户还需要通过port &lt;number&gt; 选项来为每个Sentinel设置不同的端口号 , 如果不进行设置 , 那么Sentinel的默认端口号为26379 . 
+如果要在同一台机器上运行多个Sentinel实例 , 用户还需要通过port &lt;number&gt; 选项来为每个Sentinel设置不同的端口号 , 如果不进行设置 , 那么Sentinel的默认端口号为26379 .
 
-举个例子 , 如果要在同一台机器上运行两个Sentinel实例 , 用户可以通过载入以下两个配置文件来分别将两个Sentinel实例的端口号设置为26379和26380 : 
+举个例子 , 如果要在同一台机器上运行两个Sentinel实例 , 用户可以通过载入以下两个配置文件来分别将两个Sentinel实例的端口号设置为26379和26380 :
 
 ```
 # sentinel1.conf
@@ -93,21 +93,21 @@ sentinel monitor...
 
 #### Sentinel配置实例
 
-执行以下两条命令 , 将创建两个监视主服务器s1的Sentinel实例 : 
+执行以下两条命令 , 将创建两个监视主服务器s1的Sentinel实例 :
 
 ```
 $ redis-sentinel sentinel1.conf
 $ redis-sentinel sentinel2.conf
 ```
 
-其中sentinel1.conf的内容为 : 
+其中sentinel1.conf的内容为 :
 
 ```
 port 26379
 sentinel monitor s1 127.0.0.1 6379 2
 ```
 
-而sentinel2.conf的内容为 : 
+而sentinel2.conf的内容为 :
 
 ```
 port 26380
