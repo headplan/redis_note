@@ -5,6 +5,10 @@
   * [安装Redis](an-zhuang-redis.md)
   * [Redis版本](redisban-ben.md)
     * [Redis2.6](redisban-ben/redis26.md)
+    * Redis2.8
+    * Redis3.0
+    * Redis3.2
+    * Redis4.0
 * [数据结构](Article_01_01.md)
   * [字符串](Article_01_01_string.md)
     * [应用实例](Article_01_01_string/ying-yong-li-zi.md)
