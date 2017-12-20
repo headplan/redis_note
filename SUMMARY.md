@@ -2,6 +2,8 @@
 
 * [关于](README.md)
   * [初识Redis](Chapter_01.md)
+  * [安装Redis](an-zhuang-redis.md)
+  * [Redis版本](redisban-ben.md)
 * [数据结构](Article_01_01.md)
   * [字符串](Article_01_01_string.md)
     * [应用实例](Article_01_01_string/ying-yong-li-zi.md)
