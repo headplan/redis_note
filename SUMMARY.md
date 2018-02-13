@@ -36,6 +36,9 @@
     * [事务功能](dataandext/liu-shui-xian-yu-shi-wu/shi-wu-gong-neng.md)
   * [Lua脚本](dataandext/luajiao-ben.md)
 * [应用构建](ying-yong-gou-jian.md)
+  * [微博](ying-yong-gou-jian/wei-bo.md)
+  * 论坛
+  * 博客
 * [服务器配置与管理](fu-wu-qi-pei-zhi-yu-guan-li.md)
   * [服务器配置](fu-wu-qi-pei-zhi-yu-guan-li/fu-wu-qi-pei-zhi.md)
   * [RDB持久化](fu-wu-qi-pei-zhi-yu-guan-li/rdbchi-jiu-hua.md)
