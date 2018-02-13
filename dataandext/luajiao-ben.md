@@ -122,9 +122,25 @@ This message is hello world
 
 **redis.call\(\)和redis.pcall\(\)的区别**
 
-这两个函数都可以用来执行Redis命令 , 它们的不同之处在于 , 当被执行的脚本出错时 , redis.call\(\)会返回出错脚本的名字以及EVAL命令的错误信息 , 而redis.pcall\(\)只返回EVAL命令的错误信息 . 
+这两个函数都可以用来执行Redis命令 , 它们的不同之处在于 , 当被执行的脚本出错时 , redis.call\(\)会返回出错脚本的名字以及EVAL命令的错误信息 , 而redis.pcall\(\)只返回EVAL命令的错误信息 .
 
-也就是说 , 在被执行的脚本出错时 , redis.call可以提供更详细的错误信息 , 方便进行查错 . 
+也就是说 , 在被执行的脚本出错时 , redis.call可以提供更详细的错误信息 , 方便进行查错 .
 
+**使用Lua脚本重新实现ZDECRBY命令**
 
+创建zdecrby.lua文件 : 
+
+```
+local old_score = redis.call('ZSCORE', KEYS[1], ARGV[2])
+local new_score = old_score - ARGV[1]
+return redis.call('ZADD', KEYS[1], new_score, ARGV[2])
+```
+
+执行脚本 : 
+
+```
+$ redis-cli --eval zdecrby.lua salary, 300 peter
+```
+
+这里保存脚本文件并执行脚本文件要方便一些 , 而且这里的ZDECRBY也比使用事务和乐观锁实现的ZDECRBY要简单得多 . 
 
