@@ -146,19 +146,21 @@ $ redis-cli --eval zdecrby.lua salary, 300 peter
 
 **使用EVALSHA来减少网络资源消耗**
 
-任何Lua脚本 , 只要被EVAL命令执行过一次 , 就会被存储到服务器的脚本缓存里 , 用户只要通过EVALSHA命令 , 指定被缓存脚本的SHA1值 , 就可以在不发送脚本的情况下 , 再次执行脚本 : 
+任何Lua脚本 , 只要被EVAL命令执行过一次 , 就会被存储到服务器的脚本缓存里 , 用户只要通过EVALSHA命令 , 指定被缓存脚本的SHA1值 , 就可以在不发送脚本的情况下 , 再次执行脚本 :
 
 ```
 EVALSHA sha1 numkeys key [key...] arg [arg...]
 ```
 
-通过SHA1值来重用返回前面的例子 : 
+通过SHA1值来重用返回前面的例子 :
 
 ```
-evalsha edd7b92ba54a9663eeda50789cfa182ef35847e6 1 t.msg
+EVALSHA edd7b92ba54a9663eeda50789cfa182ef35847e6 1 t.msg
 # 这里就是前面的
 EVAL "return 'This message is ' .. redis.call('GET', KEYS[1])" 1 t.msg
 ```
+
+**脚本管理命令**
 
 
 
