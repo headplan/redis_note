@@ -128,7 +128,7 @@ This message is hello world
 
 **使用Lua脚本重新实现ZDECRBY命令**
 
-创建zdecrby.lua文件 : 
+创建zdecrby.lua文件 :
 
 ```
 local old_score = redis.call('ZSCORE', KEYS[1], ARGV[2])
@@ -136,11 +136,29 @@ local new_score = old_score - ARGV[1]
 return redis.call('ZADD', KEYS[1], new_score, ARGV[2])
 ```
 
-执行脚本 : 
+执行脚本 :
 
 ```
 $ redis-cli --eval zdecrby.lua salary, 300 peter
 ```
 
-这里保存脚本文件并执行脚本文件要方便一些 , 而且这里的ZDECRBY也比使用事务和乐观锁实现的ZDECRBY要简单得多 . 
+这里保存脚本文件并执行脚本文件要方便一些 , 而且这里的ZDECRBY也比使用事务和乐观锁实现的ZDECRBY要简单得多 .
+
+**使用EVALSHA来减少网络资源消耗**
+
+任何Lua脚本 , 只要被EVAL命令执行过一次 , 就会被存储到服务器的脚本缓存里 , 用户只要通过EVALSHA命令 , 指定被缓存脚本的SHA1值 , 就可以在不发送脚本的情况下 , 再次执行脚本 : 
+
+```
+EVALSHA sha1 numkeys key [key...] arg [arg...]
+```
+
+通过SHA1值来重用返回前面的例子 : 
+
+```
+evalsha edd7b92ba54a9663eeda50789cfa182ef35847e6 1 t.msg
+# 这里就是前面的
+EVAL "return 'This message is ' .. redis.call('GET', KEYS[1])" 1 t.msg
+```
+
+
 
