@@ -109,7 +109,7 @@ redis> EVAL "return {KEYS[1], KEYS[2], ARGV[1], ARGV[2]}" 2 "a" "b" "c" "d"
 
 ** 在Lua脚本中执行Redis命令**
 
-通过调用redis.call\(\)函数或者redis.pcall\(\)函数 , 可以直接在Lua脚本里面执行Redis命令 . 
+通过调用redis.call\(\)函数或者redis.pcall\(\)函数 , 可以直接在Lua脚本里面执行Redis命令 .
 
 ```
 redis> EVAL "return redis.call('PING')" 0
@@ -119,6 +119,12 @@ redis> EVAL "return redis.call('DBSIZE')" 0
 redis> EVAL "return 'This message is ' .. redis.call('GET', KEYS[1])" 1 t.msg
 This message is hello world
 ```
+
+**redis.call\(\)和redis.pcall\(\)的区别**
+
+这两个函数都可以用来执行Redis命令 , 它们的不同之处在于 , 当被执行的脚本出错时 , redis.call\(\)会返回出错脚本的名字以及EVAL命令的错误信息 , 而redis.pcall\(\)只返回EVAL命令的错误信息 . 
+
+也就是说 , 在被执行的脚本出错时 , redis.call可以提供更详细的错误信息 , 方便进行查错 . 
 
 
 
