@@ -107,5 +107,18 @@ redis> EVAL "return {KEYS[1], KEYS[2], ARGV[1], ARGV[2]}" 2 "a" "b" "c" "d"
 3 d
 ```
 
+** 在Lua脚本中执行Redis命令**
+
+通过调用redis.call\(\)函数或者redis.pcall\(\)函数 , 可以直接在Lua脚本里面执行Redis命令 . 
+
+```
+redis> EVAL "return redis.call('PING')" 0
+PONG
+redis> EVAL "return redis.call('DBSIZE')" 0
+46
+redis> EVAL "return 'This message is ' .. redis.call('GET', KEYS[1])" 1 t.msg
+This message is hello world
+```
+
 
 
