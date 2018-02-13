@@ -166,13 +166,13 @@ EVAL "return 'This message is ' .. redis.call('GET', KEYS[1])" 1 t.msg
 SCRIPT EXISTS sha1 [sha1...]
 ```
 
-检查sha1值所代表的脚本是否已经被加入到脚本缓存里 , 是的话返回1 , 否则返回0 . 
+检查sha1值所代表的脚本是否已经被加入到脚本缓存里 , 是的话返回1 , 否则返回0 .
 
 ```
 SCRIPT LOAD script
 ```
 
-将脚本存储到脚本缓存里面 , 等待将来EVALSHA使用 . 
+将脚本存储到脚本缓存里面 , 等待将来EVALSHA使用 .
 
 ```
 SCRIPT FLUSH
@@ -184,13 +184,13 @@ SCRIPT FLUSH
 SCRIPT KILL
 ```
 
-杀死运行超时的脚本 . 如果脚本已经执行过写入操作 , 还需要执行SHUTDOWN NOSAVE命令来强制服务器不保存数据 , 以免错误的数据被保存到数据库里面 . 
+杀死运行超时的脚本 . 如果脚本已经执行过写入操作 , 还需要执行SHUTDOWN NOSAVE命令来强制服务器不保存数据 , 以免错误的数据被保存到数据库里面 .
 
 **函数库**
 
-Redis在Lua环境里面载入了一些常用的函数库 , 我们可以使用这些函数库 , 直接在脚本里面处理数据 : 
+Redis在Lua环境里面载入了一些常用的函数库 , 我们可以使用这些函数库 , 直接在脚本里面处理数据 :
 
-标准库 : 
+标准库 :
 
 * base库:包含Lua的核心\(core\)函数,比如assert、tostring、error、type等。
 * string库:包含用于处理字符串的函数,比如find、format、len、reverse等。
@@ -198,13 +198,18 @@ Redis在Lua环境里面载入了一些常用的函数库 , 我们可以使用这
 * math库:包含常用的数学计算函数,比如abs、sqrt、log等。
 * debug库:包含调试程序所需的函数,比如sethook、gethook等。
 
-外部库 : 
+外部库 :
 
 * struct库:在C语言的结构和Lua语言的值之间进行转换。
 * cjson库:将Lua值转换为JSON对象,或者将JSON对象转换为Lua值。
 * cmsgpack库:将Lua值编码为MessagePack格式,或者从MessagePack格式里面解码出Lua值。
 
-还有一个用于计算sha1值的外部函数redis.sha1hex
+还有一个用于计算sha1值的外部函数redis.sha1hex : 
+
+```
+redis> eval "return redis.sha1hex('aaaa')" 0
+70c881d4a26984ddce795f6f71817c9cf4480e79
+```
 
 
 
